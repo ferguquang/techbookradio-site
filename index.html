@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TechBook Radio</title>
+  <title>TechBook Radio — automated publishing tool for our own channel</title>
+  <meta name="description" content="TechBook Radio is a creator-owned tool that publishes the channel's own short tech/AI videos to its own TikTok, YouTube and Facebook accounts via official APIs." />
   <!-- Favicon = ĐÚNG icon app TikTok (giống nhau cả 3 nơi: app icon, logo web, tab trình duyệt) -->
   <link rel="icon" type="image/png" href="icon.png" />
   <link rel="apple-touch-icon" href="icon.png" />
@@ -11,18 +12,21 @@
   <meta name="tiktok-developers-site-verification" content="MM5pVRtOz3Yk4Xz1wyM279PaZayMxISU" />
   <style>
     :root { color-scheme: light dark; }
-    body { font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; max-width: 760px; margin: 0 auto; padding: 48px 22px; line-height: 1.7; color: #1a1a1a; background: #fff; }
-    h1 { font-size: 30px; margin-bottom: 4px; }
-    .tag { color: #888; margin-top: 0; }
+    body { font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; max-width: 820px; margin: 0 auto; padding: 40px 22px 24px; line-height: 1.7; color: #1a1a1a; background: #fff; }
+    header { display: flex; align-items: center; gap: 18px; }
+    header img { width: 84px; height: 84px; border-radius: 18px; flex: none; }
+    header h1 { margin: 0; font-size: 30px; }
+    header .tag { margin: 6px 0 0; color: #555; }
     .brand { color: #F5B841; }
     h2 { font-size: 20px; margin-top: 34px; }
     a { color: #185FA5; }
     ul { padding-left: 20px; }
-    footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid #eee; color: #888; font-size: 14px; }
-    header { display: flex; align-items: center; gap: 18px; }
-    header img { width: 84px; height: 84px; border-radius: 18px; flex: none; }
-    header h1 { margin: 0; }
-    header .tag { margin: 6px 0 0; }
+    code { background: #f3f3f3; padding: 1px 6px; border-radius: 5px; font-size: 90%; }
+    .steps { padding-left: 20px; }
+    .steps li { margin: 6px 0; }
+    .card { border: 1px solid #eee; border-radius: 12px; padding: 16px 20px; margin-top: 16px; background: #fafafa; }
+    footer { margin-top: 44px; padding-top: 18px; border-top: 1px solid #eee; color: #777; font-size: 14px; }
+    footer a { margin-right: 16px; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -30,32 +34,49 @@
     <img src="icon.png" width="84" height="84" alt="TechBook Radio logo" />
     <div>
       <h1>TechBook<span class="brand">Radio</span></h1>
-      <p class="tag">Tóm tắt sách công nghệ &amp; tin AI cho người Việt — video ngắn, dọc, ~60 giây.</p>
+      <p class="tag">Creator-owned tool that publishes our own short tech &amp; AI videos to our own social accounts.</p>
     </div>
   </header>
 
-  <h2>About</h2>
-  <p>TechBook Radio is a personal creator channel that produces short vertical videos
-  summarizing technology books and AI/tech news in Vietnamese. The videos are published to
-  our own channels on TikTok, YouTube Shorts and Facebook Reels.</p>
+  <h2>What this is</h2>
+  <p>TechBook Radio is a personal creator channel that produces short vertical videos (about 60 seconds)
+  summarizing technology books and explaining AI/tech news in Vietnamese. This website also documents the
+  channel's in-house <strong>publishing tool</strong>: a small utility the channel owner uses to upload the
+  channel's <em>own</em> finished videos to the owner's <em>own</em> connected accounts on
+  <strong>TikTok</strong>, YouTube Shorts and Facebook Reels, using each platform's official API.</p>
 
-  <h2>Our publishing tool</h2>
-  <p>We use an in-house tool to upload our <em>own</em> finished videos to our <em>own</em>
-  connected social accounts. The tool acts only on accounts the channel owner has explicitly
-  authorized, using official platform APIs. It does not access, collect, or post on behalf of
-  any other user.</p>
+  <h2>How the publishing tool works</h2>
+  <ol class="steps">
+    <li><strong>Connect account.</strong> The channel owner signs in to their own TikTok account through
+    TikTok <strong>Login Kit</strong> and authorizes the tool (scope <code>user.info.basic</code>). The tool
+    shows the connected account's username and avatar so the owner confirms it is the right account.</li>
+    <li><strong>Prepare the video.</strong> An already-produced TechBook Radio video, with its title,
+    description and hashtags, is selected. The owner can review and edit these before sending.</li>
+    <li><strong>Upload.</strong> Using the TikTok <strong>Content Posting API</strong>
+    (<code>video.upload</code> / <code>video.publish</code>), the tool uploads the video to the owner's own
+    TikTok account, where the owner picks the privacy level and confirms the post.</li>
+  </ol>
+  <div class="card">
+    The tool acts <strong>only</strong> on accounts the channel owner has explicitly authorized. It never
+    accesses, collects, or posts on behalf of any other user, and it adds no cross-platform watermark.
+  </div>
+
+  <h2>Data &amp; privacy</h2>
+  <p>The tool uses the TikTok data strictly needed to publish (account identifiers from
+  <code>user.info.basic</code> and OAuth tokens), stored locally on the owner's computer and never sold or
+  shared. Full details — including what we collect, how long we keep it, and how to request deletion — are in
+  our <a href="privacy.html">Privacy Policy</a>.</p>
 
   <h2>Contact</h2>
-  <p>For any question about this service, contact the channel owner via our
-  <a href="https://www.facebook.com/techbookRadio">Facebook page</a>.</p>
+  <p>Email: <a href="mailto:quangnd310794@gmail.com">quangnd310794@gmail.com</a><br />
+  Facebook: <a href="https://www.facebook.com/techbookRadio">facebook.com/techbookRadio</a></p>
 
-  <h2>Legal</h2>
-  <ul>
-    <li><a href="terms.html">Terms of Service</a></li>
-    <li><a href="privacy.html">Privacy Policy</a></li>
-  </ul>
-
-  <footer>© TechBook Radio. Nội dung do kênh tự sản xuất.</footer>
+  <footer>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="mailto:quangnd310794@gmail.com">Contact</a>
+    <div style="margin-top:10px;">© TechBook Radio. Nội dung do kênh tự sản xuất.</div>
+  </footer>
 
   <div id="oauth-code" style="display:none; margin-top:28px; padding:18px; border:2px solid #185FA5; border-radius:10px; background:#E6F1FB; word-break:break-all;">
     <strong style="color:#0C447C;">Mã uỷ quyền (copy đoạn này dán vào terminal):</strong>
