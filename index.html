@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TechBook Radio</title>
+  <!-- Favicon = ĐÚNG icon app TikTok (giống nhau cả 3 nơi: app icon, logo web, tab trình duyệt) -->
+  <link rel="icon" type="image/png" href="icon.png" />
+  <link rel="apple-touch-icon" href="icon.png" />
+  <!-- TIKTOK VERIFY: thẻ xác minh URL properties (đồng bộ với bản đã deploy) -->
   <meta name="tiktok-developers-site-verification" content="MM5pVRtOz3Yk4Xz1wyM279PaZayMxISU" />
   <style>
     :root { color-scheme: light dark; }
@@ -15,11 +19,20 @@
     a { color: #185FA5; }
     ul { padding-left: 20px; }
     footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid #eee; color: #888; font-size: 14px; }
+    header { display: flex; align-items: center; gap: 18px; }
+    header img { width: 84px; height: 84px; border-radius: 18px; flex: none; }
+    header h1 { margin: 0; }
+    header .tag { margin: 6px 0 0; }
   </style>
 </head>
 <body>
-  <h1>TechBook<span class="brand">Radio</span></h1>
-  <p class="tag">Tóm tắt sách công nghệ &amp; tin AI cho người Việt — video ngắn, dọc, ~60 giây.</p>
+  <header>
+    <img src="icon.png" width="84" height="84" alt="TechBook Radio logo" />
+    <div>
+      <h1>TechBook<span class="brand">Radio</span></h1>
+      <p class="tag">Tóm tắt sách công nghệ &amp; tin AI cho người Việt — video ngắn, dọc, ~60 giây.</p>
+    </div>
+  </header>
 
   <h2>About</h2>
   <p>TechBook Radio is a personal creator channel that produces short vertical videos
@@ -43,5 +56,17 @@
   </ul>
 
   <footer>© TechBook Radio. Nội dung do kênh tự sản xuất.</footer>
+
+  <div id="oauth-code" style="display:none; margin-top:28px; padding:18px; border:2px solid #185FA5; border-radius:10px; background:#E6F1FB; word-break:break-all;">
+    <strong style="color:#0C447C;">Mã uỷ quyền (copy đoạn này dán vào terminal):</strong>
+    <div id="oauth-code-val" style="font-family:monospace; font-size:18px; margin-top:8px; color:#042C53;"></div>
+  </div>
+  <script>
+    var _c = new URLSearchParams(location.search).get("code");
+    if (_c) {
+      document.getElementById("oauth-code-val").textContent = _c;
+      document.getElementById("oauth-code").style.display = "block";
+    }
+  </script>
 </body>
 </html>
